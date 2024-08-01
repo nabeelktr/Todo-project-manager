@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ProjectServiceService } from '../services/project-service.service';
 import { JwtAuthGuard } from '@app/common';
 import { GetUserId } from '../decorator/user.decorator';
@@ -18,5 +18,11 @@ export class ProjectServiceController {
   @UseGuards(JwtAuthGuard)
   async createTask(@Body() request: CreateProjectRequest, @GetUserId() userId: string) {
     return this.projectServiceService.createProject({...request, userId});
+  }
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  async updateTasks(@Body() request: CreateProjectRequest, @Param("id") projectId: string, @GetUserId() userId: string) {
+    return this.projectServiceService.updateProject(projectId, {...request, userId});
   }
 }
