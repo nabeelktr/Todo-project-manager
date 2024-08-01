@@ -1,5 +1,7 @@
 import { AbstractDocument } from "@app/common/database/abstract.schema";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { TodoStatus } from "../enums/todo-status.enum";
+import { TodoPriority } from "../enums/todo-priority.enum";
 
 @Schema({ versionKey: false, timestamps: true })
 export class Todo extends AbstractDocument {
