@@ -6,29 +6,29 @@ import { CreateProjectRequest } from '../dto/create-project.request';
 
 @Controller('projects')
 export class ProjectServiceController {
-  constructor(private readonly projectServiceService: ProjectServiceService) {}
+  constructor(private readonly projectService: ProjectServiceService) {}
 
   @Get()
   @UseGuards(JwtAuthGuard)
   async getProjects(@GetUserId() userId: string) {
-    return this.projectServiceService.getProjects(userId);
+    return this.projectService.getProjects(userId);
   }
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async createTask(@Body() request: CreateProjectRequest, @GetUserId() userId: string) {
-    return this.projectServiceService.createProject({...request, userId});
+  async createProject(@Body() request: CreateProjectRequest, @GetUserId() userId: string) {
+    return this.projectService.createProject({...request, userId});
   }
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
-  async updateTasks(@Body() request: CreateProjectRequest, @Param("id") projectId: string, @GetUserId() userId: string) {
-    return this.projectServiceService.updateProject(projectId, {...request, userId});
+  async updateProject(@Body() request: CreateProjectRequest, @Param("id") projectId: string, @GetUserId() userId: string) {
+    return this.projectService.updateProject(projectId, {...request, userId});
   }
 
   @Get('view/:id')
   @UseGuards(JwtAuthGuard)
   async getProject(@Param("id") projectId: string) {
-    return this.projectServiceService.getProject(projectId);
+    return this.projectService.getProject(projectId);
   }
 }

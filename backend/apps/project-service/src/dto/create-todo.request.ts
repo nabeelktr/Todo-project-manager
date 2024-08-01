@@ -8,10 +8,10 @@ import {
 import { TodoStatus } from "../enums/todo-status.enum";
 import { TodoPriority } from "../enums/todo-priority.enum";
 
-export class CreateTaskRequest {
+export class CreateTodoRequest {
   @IsString()
   @IsNotEmpty()
-  userId: string;
+  projectId: string;
 
   @IsString()
   @IsNotEmpty()
