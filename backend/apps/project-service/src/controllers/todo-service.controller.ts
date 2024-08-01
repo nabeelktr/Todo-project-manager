@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '@app/common';
-import { GetUserId } from '../decorator/user.decorator';
 import { TodoService } from '../services/todo.service';
 import { CreateTodoRequest } from '../dto/create-todo.request';
 
