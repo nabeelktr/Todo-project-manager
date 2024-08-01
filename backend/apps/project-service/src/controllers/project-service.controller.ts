@@ -25,4 +25,10 @@ export class ProjectServiceController {
   async updateTasks(@Body() request: CreateProjectRequest, @Param("id") projectId: string, @GetUserId() userId: string) {
     return this.projectServiceService.updateProject(projectId, {...request, userId});
   }
+
+  @Get('view/:id')
+  @UseGuards(JwtAuthGuard)
+  async getProject(@Param("id") projectId: string) {
+    return this.projectServiceService.getProject(projectId);
+  }
 }

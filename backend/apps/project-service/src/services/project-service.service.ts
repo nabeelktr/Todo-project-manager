@@ -31,4 +31,14 @@ export class ProjectServiceService {
     return this.projectRepository.findByIdAndUpdate(projectId, updateData);
   }
 
+  async getProject(projectId: string) {
+    const cachedProject = await this.redis.get(projectId);
+    if (cachedProject) {
+      return JSON.parse(cachedProject);
+    }
+    const project = await this.projectRepository.findById(projectId);
+    await this.redis.set(projectId, JSON.stringify(project), "EX", 3600);
+    return project;
+  }
+
 }
