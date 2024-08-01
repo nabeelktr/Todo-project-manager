@@ -1,0 +1,925 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Finanshels",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001"
+    }
+  ],
+  "tags": [
+    {
+      "name": "task-service"
+    },
+    {
+      "name": "user"
+    }
+  ],
+  "paths": {
+    "/api/v1/task-service/tasks": {
+      "get": {
+        "tags": [
+          "task-service"
+        ],
+        "summary": "Get tasks",
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "1452"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"5ac-66qAlSbiCnETYYfHHF7KIEGAcPc\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:17:59 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": [
+                  {
+                    "_id": "6698cd410f37d84e3c9f37a2",
+                    "title": "Complete Project Report",
+                    "description": "Write a detailed report on the project progress.",
+                    "status": "DONE",
+                    "priority": "HIGH",
+                    "assignee": "John Doe",
+                    "dueDate": "2024-07-25T00:00:00.000Z"
+                  },
+                  {
+                    "_id": "66996379a215851e69329936",
+                    "title": "Design User Interface",
+                    "description": "Create wireframes and mockups for the new application interface.",
+                    "status": "IN_PROGRESS",
+                    "priority": "MEDIUM",
+                    "assignee": "Jane Smith",
+                    "dueDate": "2024-07-30T00:00:00.000Z"
+                  },
+                  {
+                    "_id": "669963a4a215851e69329939",
+                    "title": "Backend API Development",
+                    "description": "Develop RESTful APIs for user authentication and data retrieval.",
+                    "status": "TODO",
+                    "priority": "HIGH",
+                    "assignee": "Mike Johnson",
+                    "dueDate": "2024-08-05T00:00:00.000Z"
+                  },
+                  {
+                    "_id": "669963b3a215851e6932993b",
+                    "title": "Testing and QA",
+                    "description": "Conduct thorough testing and quality assurance for the latest release.",
+                    "status": "DONE",
+                    "priority": "HIGH",
+                    "assignee": "Sarah Lee",
+                    "dueDate": "2024-08-01T00:00:00.000Z"
+                  },
+                  {
+                    "_id": "669963cba215851e6932993e",
+                    "title": "Database Optimization",
+                    "description": "Optimize the database queries for better performance.",
+                    "status": "TODO",
+                    "priority": "MEDIUM",
+                    "assignee": "Alex Brown",
+                    "dueDate": "2024-07-28T00:00:00.000Z"
+                  },
+                  {
+                    "_id": "669963e2a215851e69329940",
+                    "title": "Client Meeting",
+                    "description": "Prepare for and conduct the monthly client meeting to discuss progress.",
+                    "status": "IN_PROGRESS",
+                    "priority": "LOW",
+                    "assignee": "Emily Davis",
+                    "dueDate": "2024-07-20T00:00:00.000Z"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "task-service"
+        ],
+        "summary": "createTask",
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "title": "Client Meeting",
+                  "description": "Prepare for and conduct the monthly client meeting to discuss progress.",
+                  "status": "TODO",
+                  "priority": "LOW",
+                  "assignee": "Emily Davis",
+                  "dueDate": "2024-07-27"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:20:16 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": null
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "43"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:19:14 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "message": "Unauthorized",
+                  "statusCode": 401
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task-service/tasks/6698cd410f37d84e3c9f37a2": {
+      "put": {
+        "tags": [
+          "task-service"
+        ],
+        "summary": "Update Task",
+        "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "_id": "6698cd410f37d84e3c9f37a2",
+                  "title": "Complete Project Report",
+                  "status": "TODO",
+                  "priority": "HIGH"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "226"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"e2-ID6M8f5kYKrMdfWR5EQ1RTfDCJ4\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:20:37 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "_id": "6698cd410f37d84e3c9f37a2",
+                  "title": "Complete Project Report",
+                  "description": "Write a detailed report on the project progress.",
+                  "status": "TODO",
+                  "priority": "HIGH",
+                  "assignee": "John Doe",
+                  "dueDate": "2024-07-25T00:00:00.000Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task-service/tasks/669b2cf04ea9151141d5080a": {
+      "delete": {
+        "tags": [
+          "task-service"
+        ],
+        "summary": "Delete Task",
+        "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "39"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"27-4T6MsXfg+Dte+SxoGVvjEVwO9Dk\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:21:10 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "success": "Task deleted successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task-service/tasks/view/6698cd410f37d84e3c9f37a2": {
+      "get": {
+        "tags": [
+          "task-service"
+        ],
+        "summary": "view Task",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "226"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"e2-ID6M8f5kYKrMdfWR5EQ1RTfDCJ4\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:22:02 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "_id": "6698cd410f37d84e3c9f37a2",
+                  "title": "Complete Project Report",
+                  "description": "Write a detailed report on the project progress.",
+                  "status": "TODO",
+                  "priority": "HIGH",
+                  "assignee": "John Doe",
+                  "dueDate": "2024-07-25T00:00:00.000Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-service/auth/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "nabeel@gmail.com",
+                  "password": "Nabeel@123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "set-cookie": {
+                "schema": {
+                  "type": "string",
+                  "example": "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk4ZmM3ZGY1NTc2MjAyMGRmNDNhNTQiLCJpYXQiOjE3MjE0NDU1NzAsImV4cCI6MTcyMTQ0OTE3MH0.mgmrFpLJAHcktoBEmXDVcO-zJNbO6pj6GRU3tLkBc5U; Path=/; Expires=Tue, 23 Jul 2024 15:39:00 GMT; HttpOnly"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "135"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"87-p5NUrSqbBGddX5WFrDQTY94b9qs\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:19:30 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "_id": "6698fc7df55762020df43a54",
+                  "email": "nabeel@gmail.com",
+                  "password": "$2b$10$44zZqYnXlnTgAr3yF1G1rO7omUTm0PFPfFxHVUV.N6z1.nt/Emsei"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-service/auth/users": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "shahid@gmail.com",
+                  "password": "Nabeel@123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "135"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"87-FMpVMQ2n5fQhvvYqzR0Y+5AW2KU\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:22:50 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "_id": "669b2d8a027562ed17d3b75d",
+                  "email": "shahid@gmail.com",
+                  "password": "$2a$10$6FdTty3Og2VJnAam4eW0euaragPSwSbZ3ebpIdtn8or68iZz0mDya"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "83"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"53-g0QLQUqBkIm22jDslxiKCH1sF0k\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:22:17 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "message": "Email already exists.",
+                  "error": "Unprocessable Entity",
+                  "statusCode": 422
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-service/auth/logout": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logout",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "x-powered-by": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "http://localhost:4000"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "boolean",
+                  "example": "true"
+                }
+              },
+              "set-cookie": {
+                "schema": {
+                  "type": "string",
+                  "example": "Authentication=; Path=/; Expires=Sat, 20 Jul 2024 03:23:07 GMT; HttpOnly"
+                }
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "31"
+                }
+              },
+              "etag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"1f-h5zrfUSjbFMRBaY+nBgPMyli1P4\""
+                }
+              },
+              "date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 20 Jul 2024 03:23:07 GMT"
+                }
+              },
+              "connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "message": "Logout Successful"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
