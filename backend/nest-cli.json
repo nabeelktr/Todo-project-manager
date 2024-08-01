@@ -42,6 +42,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
+    },
+    "project-service": {
+      "type": "application",
+      "root": "apps/project-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/project-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/project-service/tsconfig.app.json"
+      }
     }
   }
 }
