@@ -2,9 +2,9 @@ import { NestMiddleware } from "@nestjs/common";
 import { Request, Response } from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-export class ReverseProxyTaskMiddleware implements NestMiddleware {
+export class ReverseProxyProjectMiddleware implements NestMiddleware {
   private proxy = createProxyMiddleware({
-    target: "http://task-service:3002/",
+    target: "http://project-service:3002/",
     pathRewrite: {
       "/api/v1/task-service": "/",
     },

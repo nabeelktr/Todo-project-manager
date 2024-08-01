@@ -1,6 +1,6 @@
 import {  MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
 import { ApiGatewayService } from "./api-gateway.service";
-import { ReverseProxyTaskMiddleware } from "./middleware/proxy.task.middleware";
+import { ReverseProxyProjectMiddleware } from "./middleware/proxy.project.middleware";
 import { ReverseProxyAuthMiddleware } from "./middleware/proxy.auth.middleware";
 import { ConfigModule } from "@nestjs/config";
 import * as Joi from "joi";
@@ -22,8 +22,8 @@ import * as Joi from "joi";
 export class ApiGatewayModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(ReverseProxyTaskMiddleware)
-      .forRoutes({ path: "v1/task-service/*", method: RequestMethod.ALL });
+      .apply(ReverseProxyProjectMiddleware)
+      .forRoutes({ path: "v1/project-service/*", method: RequestMethod.ALL });
 
     consumer
     .apply(ReverseProxyAuthMiddleware)
