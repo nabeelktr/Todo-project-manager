@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect } from "react";
-import { BiHomeAlt2 } from "react-icons/bi";
 import { BsGraphUp } from "react-icons/bs";
 import { FiChevronsRight, FiLoader } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -12,16 +11,19 @@ import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import CreateButton from "./CreateButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const SideBar = (props: Props) => {
   const [logoutUser, {isSuccess}] = useLogOutMutation()
   const user = useSelector((state: any) => state.auth.userName)
+  const router = useRouter();
 
   useEffect(() => {
     if(isSuccess){
       toast.success("Logout successful")
+      router.push('/')
     }
   }, [isSuccess])
   return (

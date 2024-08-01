@@ -9,7 +9,7 @@ type Props = {};
 const Page = (props: Props) => {
   return (
     <>
-      {/* <Protected> */}
+      <Protected>
       <Heading
         description="A comprehensive system for managing tasks "
         keywords="Task,Task Management,Kanban"
@@ -23,7 +23,7 @@ const Page = (props: Props) => {
           <Menu />
         </div>
       </div>
-      {/* </Protected> */}
+      </Protected>
     </>
   );
 };

@@ -20,7 +20,7 @@ export default function Login({ setRoute, setOpen }: any) {
 
   useEffect(() => {
     if(isLoggedIn){
-      router.push("/dashboard")
+      router.push("/projects")
     }
   }, [isLoggedIn])
 

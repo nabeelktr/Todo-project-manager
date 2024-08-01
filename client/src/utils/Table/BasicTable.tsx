@@ -49,7 +49,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ datas, columns }) => {
   });
 
   return (
-    <div className="">
+    <div className="bg-white mt-4 rounded-lg">
       <div className="flex flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 ">
         <div className="w-1/2 md:text-sm text-xs">
           <label className="sr-only"> Search</label>
@@ -118,7 +118,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ datas, columns }) => {
         </table>
         <div className="flex mb-4 h-16 justify-center items-end gap-4">
           <button
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 text-sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -133,7 +133,7 @@ const BasicTable: React.FC<BasicTableProps> = ({ datas, columns }) => {
             of <strong className="text-gray-900">{table.getPageCount()}</strong>
           </div>
           <button
-            className="flex items-center gap-2"
+            className="flex items-center text-sm gap-2"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
