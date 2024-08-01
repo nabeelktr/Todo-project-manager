@@ -1,0 +1,109 @@
+services:
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #     target: production
+  #   depends_on:
+  #     - api-gateway
+  #     - task-service
+  #   volumes:
+  #     - ./client:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - my-network
+
+  api-gateway:
+    build:
+      context: ./backend
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    env_file:
+      - ./backend/apps/api-gateway/.env
+    depends_on:
+      - task-service
+      - auth-service
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3001:3001"
+    networks:
+      - my-network
+
+  project-service:
+    build:
+      context: ./backend
+      dockerfile: ./apps/project-service/Dockerfile
+      target: development
+    command: npm run start:dev project-service
+    env_file:
+      - ./backend/apps/project-service/.env
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - auth-service
+      - redis
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3002:3002"
+    networks:
+      - my-network
+
+  auth-service:
+    build:
+      context: ./backend
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    ports:
+      - "3003:3003"
+    env_file:
+      - ./backend/apps/auth/.env
+    depends_on:
+      - mongodb
+      - rabbitmq
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - my-network
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+    networks:
+      - my-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - my-network
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  mongodb_master_data:
+    driver: local
