@@ -10,7 +10,7 @@ export const apiSlice = createApi({
 
     updateTodo: builder.mutation({
       query: (data) => ({
-        url: `task-service/tasks/${data._id}`,
+        url: `project-service/projects/todos/${data._id}`,
         method: "PUT",
         body: data,
         credentials: "include" as const,
@@ -19,15 +19,15 @@ export const apiSlice = createApi({
 
     deleteTodo: builder.mutation({
       query: (data) => ({
-        url: `task-service/tasks/${data._id}`,
+        url: `project-service/projects/todos/${data._id}`,
         method: "DELETE",
         credentials: "include" as const,
       }),
     }),
 
     getTodos: builder.query({
-      query: () => ({
-        url: "task-service/tasks",
+      query: (data) => ({
+        url: `project-service/projects/todos/${data._id}`,
         method: "GET",
         credentials: "include" as const,
       }),
@@ -35,7 +35,7 @@ export const apiSlice = createApi({
 
     addTodo: builder.mutation({
       query: (data) => ({
-        url: "task-service/tasks",
+        url: "project-service/projects/todos",
         method: "POST",
         credentials: "include" as const,
         body: data,
