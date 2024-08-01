@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { Types } from 'mongoose';
 
 export class CreateProjectRequest {
   @IsString()
@@ -8,4 +9,8 @@ export class CreateProjectRequest {
   @IsString()
   @IsNotEmpty()
   userId: string;
+
+  @IsArray()
+  @IsOptional() 
+  todos: Types.ObjectId[] = [];
 }

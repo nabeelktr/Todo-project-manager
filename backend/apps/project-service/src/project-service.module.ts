@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ProjectServiceController } from './project-service.controller';
-import { ProjectServiceService } from './project-service.service';
+import { ProjectServiceController } from './controllers/project-service.controller';
+import { ProjectServiceService } from './services/project-service.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from "joi"
 
