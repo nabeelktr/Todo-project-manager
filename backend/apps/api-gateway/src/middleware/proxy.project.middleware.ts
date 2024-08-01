@@ -6,7 +6,7 @@ export class ReverseProxyProjectMiddleware implements NestMiddleware {
   private proxy = createProxyMiddleware({
     target: "http://project-service:3002/",
     pathRewrite: {
-      "/api/v1/task-service": "/",
+      "/api/v1/project-service": "/",
     },
     changeOrigin: true,
     secure: false,

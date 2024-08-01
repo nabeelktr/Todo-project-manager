@@ -54,9 +54,9 @@ const ProjectsTable = (props: Props) => {
     <div>
         {isLoading ? (
             <Loader />
-          ) : (
-            <BasicTable datas={projects} columns={columns} />
-          )}
+          ) : 
+            projects &&( <BasicTable datas={projects} columns={columns} />)
+          }
     </div>
   )
 }

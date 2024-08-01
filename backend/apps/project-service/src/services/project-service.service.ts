@@ -5,7 +5,7 @@ import { CreateProjectRequest } from '../dto/create-project.request';
 
 
 @Injectable()
-export class ProjectServiceService {
+export class ProjectService {
   constructor(
     private readonly projectRepository: ProjectRepository,
     @Inject("REDIS_CLIENT") private readonly redis: Redis,

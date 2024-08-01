@@ -11,6 +11,7 @@ import { BsStars } from "react-icons/bs";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import CreateButton from "../Layout/CreateButton";
+import ProjectsTable from "./ProjectsTable";
 
 type Props = {};
 const getGreeting = () => {
@@ -96,6 +97,7 @@ const Menu = (props: Props) => {
         </div>
       </div>
       {/* <Dashboard /> */}
+      <ProjectsTable />
     </div>
   );
 };
