@@ -5,12 +5,13 @@ import { BsGraphUp } from "react-icons/bs";
 import { FiChevronsRight, FiLoader } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuBellDot, LuUsers2 } from "react-icons/lu";
-import { MdOutlineAnalytics } from "react-icons/md";
+import { MdOutlineAnalytics, MdOutlineFolderCopy } from "react-icons/md";
 import { TfiDownload } from "react-icons/tfi";
 import { useLogOutMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import CreateButton from "./CreateButton";
+import Link from "next/link";
 
 type Props = {};
 
@@ -63,8 +64,8 @@ const SideBar = (props: Props) => {
 
         <ul className="mt-5">
           <li className="flex gap-3 p-2 cursor-pointer bg-[#F4F4F4] items-center rounded-md border border-[#DEDEDE]">
-            <BiHomeAlt2 className="h-6 w-6 font-[400] text-gray-600" style={{ strokeWidth: 0.01 }}/>
-            <p className="text-lg text-[#797979] tracking-wide font-[300]"> Home</p>
+            <MdOutlineFolderCopy className="h-6 w-6 font-[400] text-gray-600" style={{ strokeWidth: 0.01 }}/>
+            <Link href={'/dashboard'} className="text-lg text-[#797979] tracking-wide font-[300]"> Projects</Link>
           </li>
           <li className="flex gap-3 p-2 cursor-pointer items-center hover:bg-[#F4F4F4] rounded-md">
             <MdOutlineAnalytics className="h-6 w-6 font-[400] text-gray-600" style={{ strokeWidth: 0.01 }}/>
@@ -85,7 +86,7 @@ const SideBar = (props: Props) => {
         </ul>
 
         <div className="text-lg mt-5">
-          <CreateButton text="Create new task"/>
+          <CreateButton text="Create new project"/>
         </div>
       </div>
       <div className="bg-[#F3F3F3] w-full px-4 py-2 items-center flex gap-6 rounded-lg text-[#666666]">
