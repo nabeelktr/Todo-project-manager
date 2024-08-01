@@ -12,7 +12,8 @@ export class ProjectService {
   ) {}
 
   async getProjects(userId: string) {
-    return this.projectRepository.find({ userId });
+    const resp = await this.projectRepository.find({ userId });
+    return resp
   }
 
   async createProject(request: CreateProjectRequest) {

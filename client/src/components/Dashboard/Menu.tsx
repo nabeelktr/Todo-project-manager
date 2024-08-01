@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import card1 from "../../../public/assets/card1.png";
@@ -12,22 +12,23 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import CreateButton from "../Layout/CreateButton";
 import ProjectsTable from "./ProjectsTable";
+import { ProjectProvider } from "@/contexts/ProjectContext";
 
 type Props = {};
 const getGreeting = () => {
   const currentHour = new Date().getHours();
   if (currentHour < 12) {
-    return 'Good morning';
+    return "Good morning";
   } else if (currentHour < 18) {
-    return 'Good afternoon';
+    return "Good afternoon";
   } else {
-    return 'Good evening';
+    return "Good evening";
   }
 };
 
 const Menu = (props: Props) => {
   const greeting = getGreeting();
-  const user = useSelector((state: any) => state.auth.userName)
+  const user = useSelector((state: any) => state.auth.userName);
   return (
     <div className="pl-4 pt-6 pr-10">
       <div className="flex justify-between items-center">
@@ -76,24 +77,29 @@ const Menu = (props: Props) => {
       </div>
       <div className="mt-3 flex items-center justify-between">
         <div className="flex gap-2 ">
-        <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
-                <p className="text-[#797979] text-md font-[300] tracking-wide">Calender view</p>
-                <CiCalendar className="h-6 w-6 text-[#797979]" strokeWidth={0.5} />
-            </div>
-            <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
-                <p className="text-[#797979] text-md font-[300] tracking-wide">Automation</p>
-                <BsStars className="h-6 w-6 text-[#797979]" />
-            </div>
-            <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
-                <p className="text-[#797979] text-md font-[300] tracking-wide">Share</p>
-                <IoShareSocialOutline className="h-6 w-6 text-[#797979]"  />
-            </div>
+          <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
+            <p className="text-[#797979] text-md font-[300] tracking-wide">
+              Calender view
+            </p>
+            <CiCalendar className="h-6 w-6 text-[#797979]" strokeWidth={0.5} />
+          </div>
+          <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
+            <p className="text-[#797979] text-md font-[300] tracking-wide">
+              Automation
+            </p>
+            <BsStars className="h-6 w-6 text-[#797979]" />
+          </div>
+          <div className="bg-[#F4F4F4] p-2 flex gap-3 rounded-md items-center justify-center">
+            <p className="text-[#797979] text-md font-[300] tracking-wide">
+              Share
+            </p>
+            <IoShareSocialOutline className="h-6 w-6 text-[#797979]" />
+          </div>
         </div>
         <div className="flex gap-2 items-center">
-          
-            <div className="text-sm ">
-                <CreateButton text="Create new" />
-            </div>
+          <div className="text-sm ">
+            <CreateButton text="Create new" />
+          </div>
         </div>
       </div>
       {/* <Dashboard /> */}

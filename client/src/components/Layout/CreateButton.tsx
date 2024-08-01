@@ -1,15 +1,16 @@
 "use client"
-import { useDrawer } from "@/contexts/DrawerContext";
 import { styles } from "@/styles/style";
-import React from "react";
+import CustomModal from "@/utils/Modal/CustomModal";
+import React, { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
+import ProjectForm from "../Projects/AddAndEditProject";
 
 type Props = {
   text: string
 };
 
 const CreateButton = ({text}: Props) => {
-  const { isDrawerOpen, setDrawerOpen } = useDrawer();
+  const [open, setOpen] = useState(false)
   return (
     <div className=" w-full">
       <button
@@ -24,10 +25,13 @@ const CreateButton = ({text}: Props) => {
             "0px 4px 16px 0px #0000001A, 0px 12px 16px 0px #BABABA33 inset",
         }}
         className={`${styles.button} hover:shadow-4xl flex gap-2 items-center justify-center px-2 `}
-        onClick={() => setDrawerOpen("To do")}
+        onClick={() => setOpen(true)}
       >
         {text} <AiFillPlusCircle className="h-6 w-6"/>
       </button>
+      {open && (
+        <CustomModal open={open} setOpen={setOpen} setRoute={() => {}} component={ProjectForm}  />
+      )}
     </div>
   );
 };

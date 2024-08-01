@@ -49,3 +49,7 @@ export const taskSchema = Yup.object().shape({
     .required("Due date is required")
     .min(new Date(), "Due date cannot be in the past"),
 });
+
+export const projectSchema = Yup.object().shape({
+  title: Yup.string().required("Title is required"),
+});

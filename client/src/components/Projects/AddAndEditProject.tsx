@@ -3,7 +3,13 @@ import React, { useRef, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAddProjectMutation, useUpdateProjectMutation } from "../../../redux/features/project/projectApi";
+import {
+  useAddProjectMutation,
+  useUpdateProjectMutation,
+} from "../../../redux/features/project/projectApi";
+import { projectSchema } from "@/utils/yup";
+import { toast } from "sonner";
+import { useProjects } from "@/contexts/ProjectContext";
 
 type ProjectFormData = {
   title: string;
@@ -11,14 +17,12 @@ type ProjectFormData = {
 
 type Props = {
   projectId?: string;
-  initialData?: ProjectFormData;
+  title?: string;
+  setOpen: any;
 };
 
-const projectSchema = yup.object().shape({
-  title: yup.string().required("Title is required"),
-});
-
-const ProjectForm: React.FC<Props> = ({ projectId, initialData }) => {
+const ProjectForm: React.FC<Props> = ({ projectId, title, setOpen }) => {
+  const { refetch } = useProjects();
   const {
     handleSubmit,
     control,
@@ -26,25 +30,28 @@ const ProjectForm: React.FC<Props> = ({ projectId, initialData }) => {
     reset,
   } = useForm<ProjectFormData>({
     resolver: yupResolver(projectSchema),
-    defaultValues: initialData || { title: "" },
+    defaultValues: { title: title || "" },
   });
 
-  const [addProject] = useAddProjectMutation();
-  const [editProject] = useUpdateProjectMutation();
+  const [addProject] = useAddProjectMutation({});
+  const [editProject] = useUpdateProjectMutation({});
 
   useEffect(() => {
-    if (initialData) {
-      reset(initialData);
+    if (title) {
+      reset({ title });
     }
-  }, [initialData, reset]);
-
+  }, [title, reset]);
 
   const onSubmit = async (data: ProjectFormData) => {
-      if (projectId) {
-        await editProject({ projectId, ...data });
-      } else {
-        await addProject({ ...data });
-      }
+    if (projectId) {
+      await editProject({ _id: projectId, ...data });
+      toast.success(`Project updated successfully`);
+    } else {
+      await addProject({ ...data });
+      toast.success(`Project added successfully`);
+    }
+    refetch();
+    setOpen(false);
   };
 
   return (
