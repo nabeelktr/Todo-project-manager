@@ -30,7 +30,7 @@ const CardItem = ({ index, data }: Props) => {
   const [deleteTask, { isSuccess }] = useDeleteTodoMutation();
   const handleDelete = async () => {
     await deleteTask(data);
-    socketId.emit("tasks", { data: "task deleted" });
+    socketId.emit("todos", { data: "todo deleted" });
   };
 
   useEffect(() => {

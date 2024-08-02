@@ -19,13 +19,13 @@ const TodoModal: React.FC = () => {
         onClose={closeDrawer}
         className="p-2 px-4 pr-6 pt-4"
         placeholder={undefined}
-        onPointerEnterCapture={''}
-        onPointerLeaveCapture=''
+        onPointerEnterCapture={() => {}} 
+        onPointerLeaveCapture={() => {}}
         placement="right"
       >
         <div className="mb-6 flex items-center justify-between">
           <div className="flex gap-2 items-center">
-            <IconButton variant="text" color="blue-gray" onClick={closeDrawer} placeholder={undefined} onPointerEnterCapture={''} onPointerLeaveCapture=''>
+            <IconButton variant="text" color="blue-gray" onClick={closeDrawer} placeholder={undefined} onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="#797979"

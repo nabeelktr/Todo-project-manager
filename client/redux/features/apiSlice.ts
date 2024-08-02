@@ -35,7 +35,7 @@ export const apiSlice = createApi({
 
     addTodo: builder.mutation({
       query: (data) => ({
-        url: "project-service/projects/todos",
+        url: `project-service/projects/todos`,
         method: "POST",
         credentials: "include" as const,
         body: data,

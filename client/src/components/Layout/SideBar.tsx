@@ -67,7 +67,7 @@ const SideBar = (props: Props) => {
         <ul className="mt-5">
           <li className="flex gap-3 p-2 cursor-pointer bg-[#F4F4F4] items-center rounded-md border border-[#DEDEDE]">
             <MdOutlineFolderCopy className="h-6 w-6 font-[400] text-gray-600" style={{ strokeWidth: 0.01 }}/>
-            <Link href={'/dashboard'} className="text-lg text-[#797979] tracking-wide font-[300]"> Projects</Link>
+            <Link href={'/projects'} className="text-lg text-[#797979] tracking-wide font-[300]"> Projects</Link>
           </li>
           <li className="flex gap-3 p-2 cursor-pointer items-center hover:bg-[#F4F4F4] rounded-md">
             <MdOutlineAnalytics className="h-6 w-6 font-[400] text-gray-600" style={{ strokeWidth: 0.01 }}/>

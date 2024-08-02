@@ -41,7 +41,22 @@ export class TodoService {
 
   async deleteTodo(todoId: string) {
     await this.redis.del(todoId);
-    return this.todoRepository.deleteById(todoId);
+    const todo:any = await this.todoRepository.findById(todoId);
+    if (!todo) {
+        throw new NotFoundException('Todo not found');
+    }
+    const project = await this.projectRepository.findById(todo.projectId)
+    if (!project) {
+        throw new NotFoundException('Project not found');
+    }
+    project.todos = project.todos.filter((id) => id.toString() !== todoId);
+    await this.projectRepository.findByIdAndUpdate(
+        todo.projectId ,
+        {...project}
+    );
+    await this.todoRepository.deleteById(todoId);
+    await this.redis.set(project._id.toString(), JSON.stringify(project), "EX", 3600);
+    return { message: 'Todo successfully deleted' };
   }
 
 }

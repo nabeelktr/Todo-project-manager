@@ -11,6 +11,8 @@ import { GatewayModule } from './gateway/gateway.module';
 import { ProjectRepository } from './repositories/project.repository';
 import { TodoRepository } from './repositories/todo.repository';
 import { redisProvider } from './redis/redis.provider';
+import { TodoServiceController } from './controllers/todo-service.controller';
+import { TodoService } from './services/todo.service';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { redisProvider } from './redis/redis.provider';
     AuthModule,
     GatewayModule,
   ],
-  controllers: [ProjectServiceController],
-  providers: [ProjectService, ProjectRepository, TodoRepository, redisProvider],
+  controllers: [ProjectServiceController, TodoServiceController],
+  providers: [ProjectService, TodoService, ProjectRepository, TodoRepository, redisProvider],
 })
 export class ProjectServiceModule {}

@@ -7,7 +7,7 @@ import { CreateTodoRequest } from '../dto/create-todo.request';
 export class TodoServiceController {
   constructor(private readonly todoService: TodoService) {}
 
-  @Get()
+  @Get(':id')
   @UseGuards(JwtAuthGuard)
   async getTodos(@Param("id") projectId: string) {
     return this.todoService.getTodos(projectId);
@@ -28,6 +28,7 @@ export class TodoServiceController {
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   async deleteTodo(@Param("id") todoId: string){
+    console.log("object", todoId);
     return this.todoService.deleteTodo(todoId);
   }
 

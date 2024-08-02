@@ -13,6 +13,7 @@ import { GoPencil, GoPlus } from "react-icons/go";
 import { format } from "date-fns";
 import { useDrawer } from "@/contexts/DrawerContext";
 import { useAddTodoMutation } from "../../../redux/features/apiSlice";
+import { useProjects } from "@/contexts/ProjectContext";
 
 
 type TodoFormData = {
@@ -28,6 +29,7 @@ type Props = {
 };
 
 const AddTodoForm: React.FC<Props> = ({status}) => {
+  const {currentProject} = useProjects()
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   const { setDrawerOpen} = useDrawer()
   const dispatch = useDispatch();
@@ -50,9 +52,9 @@ const AddTodoForm: React.FC<Props> = ({status}) => {
 
   const onSubmit = async (data: TodoFormData) => {
     if (isLoggedIn) {
-      await addTodo({ ...data });
+      await addTodo({ ...data, projectId: currentProject.id });
       setDrawerOpen("")
-      socketId.emit("tasks", { data: "task added" });
+      socketId.emit("todos", { data: "todo added" });
     }
   };
 
@@ -204,20 +206,8 @@ const AddTodoForm: React.FC<Props> = ({status}) => {
         />
       </div>
       <p className="text-xs text-red-400 pt-1">{errors.description?.message}</p>
-
-      <div className="grid grid-cols-6 items-center   text-md tracking-wide px-2">
-        <div className=" col-span-2 flex gap-5 items-center">
-          <GoPlus
-            className="h-6 w-6"
-            style={{ strokeWidth: 0.001 }}
-          />
-          <p>Add custom property</p>
-        </div>
-        </div>
       <div className="border-b py-3 border-gray-400 h-3 "></div>
-
-
-      <button type="submit" className={`text-white`}>
+      <button type="submit" className={`text-white items-center text-lg rounded-lg p-2 bg-gray-900`}>
         Add Task
       </button>
     </form>

@@ -57,7 +57,7 @@ const EditTodoForm: React.FC<Props> = ({ setOpen, tasks: task }) => {
     try {
       const newData = { ...data, _id: task._id };
       await updateTodo({ ...newData }).unwrap();
-      socketId.emit("tasks", {data: "task updated"})
+      socketId.emit("todos", {data: "todo updated"})
       setOpen(false);
     } catch (error) {
       console.error("Error updating task:", error);
