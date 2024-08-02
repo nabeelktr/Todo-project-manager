@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { ProjectService } from '../services/project-service.service';
 import { JwtAuthGuard } from '@app/common';
 import { GetUserId } from '../decorator/user.decorator';
 import { CreateProjectRequest } from '../dto/create-project.request';
+import { Project } from '../schemas/project.schems';
+import { Response } from 'express';
 
 @Controller('projects')
 export class ProjectServiceController {
@@ -30,5 +32,10 @@ export class ProjectServiceController {
   @UseGuards(JwtAuthGuard)
   async getProject(@Param("id") projectId: string) {
     return this.projectService.getProject(projectId);
+  }
+
+  @Post('export')
+  async exportProject(@Body() project: Project,  @Res() res: Response) {
+    return this.projectService.exportProjectSummary(project, res);
   }
 }

@@ -27,6 +27,27 @@ export const projectApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    exportProject: builder.mutation({
+      query: (project) => ({
+        url: "project-service/projects/export",
+        method: "POST",
+        credentials: "include" as const,
+        body: project,
+        responseHandler: async (response) => {
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = `${project.title}.md`;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          return { data: 'Export successful' };
+        },
+      }),
+    }),
   }),
 });
 
@@ -34,4 +55,5 @@ export const {
   useAddProjectMutation,
   useUpdateProjectMutation,
   useGetProjectsQuery,
+  useExportProjectMutation
 } = projectApi;
