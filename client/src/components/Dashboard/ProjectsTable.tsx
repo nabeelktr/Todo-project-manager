@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 type Props = {};
 
 const ProjectsTable = (props: Props) => {
+  const { setCurrentProject } = useProjects();
+  const router = useRouter();
   const { projects, refetch, isLoading } = useProjects();
   const [data, setData] = useState({
     id: "",
@@ -44,8 +46,6 @@ const ProjectsTable = (props: Props) => {
     {
       header: "View",
       cell: (info: any) => {
-        const { setCurrentProject } = useProjects();
-        const router = useRouter();
         const handleView = () => {
           const datas = {
             id: info.cell.row.original._id,

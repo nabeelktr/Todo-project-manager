@@ -69,7 +69,7 @@ const Menu = (props: Props) => {
           <div>
             <p className="text-md font-[500] text-[#757575]">Access Anywhere</p>
             <p className="text-[#868686] text-sm font-[300]">
-              Sync your notes across all devices. Stay productive whether you're
+              Sync your notes across all devices. Stay productive whether you&apos;re
               on your phone, tablet, or computer.
             </p>
           </div>
@@ -102,7 +102,6 @@ const Menu = (props: Props) => {
           </div>
         </div>
       </div>
-      {/* <Dashboard /> */}
       <ProjectsTable />
     </div>
   );
