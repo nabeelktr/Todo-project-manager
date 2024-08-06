@@ -19,8 +19,8 @@ A real-time Todo-Project management system featuring a Trello-Style dashboard. B
 ## Installation
 
 ```bash
-git clone https://github.com/nabeelktr/Crework.git
-cd Task-management-app
+git clone https://github.com/nabeelktr/Todo-project-manager.git
+cd Todo-project-manager
 docker compose up
 ```
 
